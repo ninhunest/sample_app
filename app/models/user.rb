@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
   before_save {email.downcase!}
+
   validates :name, presence: true, length: {maximum: Settings.name_max_length}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true,
@@ -9,6 +10,9 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true,
     length: {minimum: Settings.pass_min_length}
+
+  scope :select_id_name_email, ->{select :id, :name, :email}
+  scope :sort_by_id, ->{order id: :asc}
 
   class << self
     def digest string
@@ -22,6 +26,10 @@ class User < ApplicationRecord
     end
   end
 
+  def current_user? user
+    self == user
+  end
+
   def remember
     self.remember_token = User.new_token
     update_attributes remember_digest: User.digest(remember_token)
@@ -29,7 +37,7 @@ class User < ApplicationRecord
 
   def authenticated? remember_token
     return false if remember_digest
-    BCrypt::Password.new(remember_digest).is_password? remember_token
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
   def forget
