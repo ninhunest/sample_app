@@ -23,3 +23,6 @@ en:
   ror: "Ruby on Rails"
   the: "The"
   by: "by"
+  cma: "Create my account"
+  error: "error"
+  confirmation: "Confirmation"
