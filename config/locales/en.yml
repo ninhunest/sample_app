@@ -2,7 +2,7 @@ en:
   signup: "Sign up now!"
   rort: "Ruby on Rails Tutorial"
   rors: "Rails Tutorial help section"
-  welcome: "Welcome to the Sample App"
+  welcome: "Welcome to the Sample App !"
   this: "This is the home page for the"
   sample: "sample application."
   gethelp: "Get help on the Ruby on Rails Tutorial at the"
@@ -23,3 +23,7 @@ en:
   ror: "Ruby on Rails"
   the: "The"
   by: "by"
+  create_account: "Create my account"
+  error: "error"
+  confirmation: "Confirmation"
+
