@@ -17,6 +17,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by id: params[:id]
+    return if @user
+    flash[:warning] =  t "can_not_find_user"
+    redirect_to login_path
   end
 
   private

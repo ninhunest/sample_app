@@ -180,3 +180,16 @@ input {
     color: $state-danger-text;
   }
 }
+
+.checkbox {
+  margin: 10px, 0, 20px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  margin-left: 0;
+  width: auto;
+}
