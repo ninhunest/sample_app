@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   scope :select_id_name_email, ->{select :id, :name, :email}
   scope :sort_by_id, ->{order id: :asc}
-
+  scope :where_activated, ->{where activated: true}
   class << self
     def digest string
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -36,9 +36,10 @@ class User < ApplicationRecord
     update_attributes remember_digest: User.digest(remember_token)
   end
 
-  def authenticated? remember_token
-    return false if remember_digest
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   def forget
@@ -52,5 +53,13 @@ class User < ApplicationRecord
   def create_activation_digest
     self.activation_token  = User.new_token
     self.activation_digest = User.digest(activation_token)
+  end
+
+  def activate
+    update_columns activated: FILL_IN, activated_at: FILL_IN
+  end
+
+  def send_activation_email
+    UserMailer.account_activation self.deliver_now
   end
 end

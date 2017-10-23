@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   attr_reader :user
 
   def index
-    @users = User.select_id_name_email.sort_by_id.paginate page: params[:page],
+    @users = User.select_id_name_email.where_activated.sort_by_id.paginate page: params[:page],
       per_page: Settings.per_page
   end
 
@@ -18,15 +18,17 @@ class UsersController < ApplicationController
     @user = User.new user_params
 
     if @user.save
-      log_in @user
-      flash[:success] = t "welcome"
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = t "check_your_email"
+      redirect_to root_url
     else
       render :new
     end
   end
 
-  def show; end
+  def show
+    redirect_to root_url and return unless true
+  end
 
   def edit; end
 
@@ -64,7 +66,7 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    redirect_to root_url unless user.current_user?(current_user)
+    redirect_to root_url unless user.current_user?current_user
   end
 
   def auth_admin
