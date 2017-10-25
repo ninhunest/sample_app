@@ -6,8 +6,8 @@ class UsersController < ApplicationController
   attr_reader :user
 
   def index
-    @users = User.select_id_name_email.sort_by_id.paginate page: params[:page],
-      per_page: Settings.per_page
+    @users = User.select_id_name_email.activate.sort_by_id.paginate page:
+      params[:page], per_page: Settings.per_page
   end
 
   def new
@@ -18,9 +18,9 @@ class UsersController < ApplicationController
     @user = User.new user_params
 
     if @user.save
-      log_in @user
-      flash[:success] = t "welcome"
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = t "check_email_to_activate"
+      redirect_to root_url
     else
       render :new
     end

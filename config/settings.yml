@@ -4,3 +4,4 @@ pass_min_length: 6
 option_size: 80
 per_page: 5
 gravatar_size: 50
+time_life_link_reset: 2
