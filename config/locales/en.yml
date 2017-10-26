@@ -68,7 +68,17 @@ en:
   can_not_find_user: "can not find user"
   update_password: "Update password"
   password_reset_has_expired: "Password reset has expired."
-
+  view_my_profile: "view my profile"
+  micropost: "micropost"
+  post: "Post"
+  compose_new_micropost: "Compose new micropost..."
+  you_sure: "You sure?"
+  micropost_deleted: "Micropost deleted"
+  can_not_delete: "can not delete"
+  should_be_less: "should be less than 5MB"
+  maximum_file_size_is_5MB: "Maximum file size is 5MB. Please choose a smaller file."
+  micropost_feed: "Micropost Feed"
+  map: "map"
   account_activations:
     edit:
       account_activated: "Account activated!"
@@ -96,5 +106,6 @@ en:
       delete_failed: "delete failed"
     logged_in_user:
       please_log_in: "Please log in."
-
-
+  microposts:
+    create:
+      micropost_created: "Micropost created!"
