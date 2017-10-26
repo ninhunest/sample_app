@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   attr_reader :user
 
   def index
-    @users = User.select_id_name_email.activate.sort_by_id.paginate page:
+    @users = User.select_id_name_email.activated.sort_by_id.paginate page:
       params[:page], per_page: Settings.per_page
   end
 
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
     if @user.save
       @user.send_activation_email
-      flash[:info] = t "check_email_to_activate"
+      flash[:info] = t ".check_email_to_activate"
       redirect_to root_url
     else
       render :new
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def update
     if user.update_attributes user_params
-      flash[:success] = t "profile_updated"
+      flash[:success] = t ".profile_updated"
       redirect_to @user
     else
       render :edit
@@ -41,9 +41,9 @@ class UsersController < ApplicationController
 
   def destroy
     if user.destroy
-      flash[:success] = t "user_deleted"
+      flash[:success] = t ".user_deleted"
     else
-      flash[:danger] = t "delete_failed"
+      flash[:danger] = t ".delete_failed"
     end
     redirect_to root_path
   end
@@ -58,13 +58,13 @@ class UsersController < ApplicationController
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = t "please_log_in."
+      flash[:danger] = t ".please_log_in."
       redirect_to login_url
     end
   end
 
   def correct_user
-    redirect_to root_url unless user.current_user?(current_user)
+    redirect_to root_url unless user.current_user?current_user
   end
 
   def auth_admin

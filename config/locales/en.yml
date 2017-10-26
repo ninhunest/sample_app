@@ -35,7 +35,6 @@ en:
   new_user: "New user?"
   ruby_sample_app: "Ruby on Rails Tutorial Sample App"
   remember_me: "Remember me on this computer"
-  invalid: "Invalid email/password combination"
   the_form_contains: "The form contains"
   edit_user: "Edit user"
   save_changes: "Save changes"
@@ -45,23 +44,57 @@ en:
   and: "and"
   this_is: "This is the sample application for the tutorial"
   to_teach: "to teach web development with"
-  can_not_find_user: "can not find user"
-  profile_updated: "Profile updated"
-  please_log_in: "Please log in."
   all_users: "All users"
   delete: "delete"
   you_sure: "You sure?"
-  user_deleted: "User deleted"
   confirmation: "Confirmation"
-  delete_failed: "delete failed"
-  check_email_to_activate: "Please check your email to activate your account."
-  account_activated: "Account activated!"
-  invalid_activation_link: "Invalid activation link"
   account_activation: "Account activation"
   hi: "Hi"
-  account_not_activated: "Account not activated."
-  check_email_for_activation_link: "Check your email for the activation link."
+  account_not_activated: "Account not activated. Check your email for the activation link."
   activate: "Activate"
   sample_app: "Sample App"
   welcome_click_on_link: "Welcome to the Sample App! Click on the link below to
     activate your account:"
+  forgot_password: "(forgot password)"
+  forgot_password_title: "Forgot password"
+  password_has_been_reset: "Password has been reset."
+  password_reset: "Password reset"
+  reset_password: "Reset password"
+  to_reset_password: "To reset your password click the link below:"
+  this_link_expire: "This link will expire in two hours.If you did not request
+    your password to be reset, please ignore this email and your password will
+    stay as it is."
+  submit: "Submit"
+  can_not_find_user: "can not find user"
+  update_password: "Update password"
+  password_reset_has_expired: "Password reset has expired."
+
+  account_activations:
+    edit:
+      account_activated: "Account activated!"
+      invalid_activation_link: "Invalid activation link"
+  password_resets:
+    create:
+      email_reset_password: "Email sent with password reset instructions"
+      email_address_not_found: "Email address not found"
+    update:
+      can't_be_empty: "can't be empty"
+    check_expiration:
+  sessions:
+    create:
+      account_not_activated: "Account not activated. Check your email for the
+        activation link."
+      invalid: "Invalid email/password combination"
+  users:
+    create:
+      check_email_to_activate: "Please check your email to activate your
+        account."
+    update:
+      profile_updated: "Profile updated"
+    destroy:
+      user_deleted: "User deleted"
+      delete_failed: "delete failed"
+    logged_in_user:
+      please_log_in: "Please log in."
+
+
