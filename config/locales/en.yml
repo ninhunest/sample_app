@@ -79,6 +79,13 @@ en:
   maximum_file_size_is_5MB: "Maximum file size is 5MB. Please choose a smaller file."
   micropost_feed: "Micropost Feed"
   map: "map"
+  micropost_created: "Micropost created!"
+  following: "following"
+  followers: "followers"
+  follow: "Follow"
+  unfollow: "Unfollow"
+  view_my_profile: "view my profile"
+  can_not_find: "can not find"
   account_activations:
     edit:
       account_activated: "Account activated!"
@@ -106,6 +113,3 @@ en:
       delete_failed: "delete failed"
     logged_in_user:
       please_log_in: "Please log in."
-  microposts:
-    create:
-      micropost_created: "Micropost created!"
