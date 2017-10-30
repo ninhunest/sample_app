@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: %i(index edit update)
-  before_action :find_user, only: %i(show edit update)
+  before_action :load_user, only: %i(show edit update)
   before_action :correct_user, only: %i(edit update)
-  before_action :auth_admin, only: :destroy
+  before_action :verify_admin!, only: :destroy
   attr_reader :user
 
   def index
@@ -26,7 +26,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @microposts = @user.microposts.paginate page: params[:page],
+      per_page: Settings.per_page
+  end
 
   def edit; end
 
@@ -55,24 +58,16 @@ class UsersController < ApplicationController
       :password_confirmation
   end
 
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = t ".please_log_in."
-      redirect_to login_url
-    end
-  end
-
   def correct_user
     redirect_to root_url unless user.current_user?current_user
   end
 
-  def auth_admin
+  def verify_admin!
     @user = User.find_by id: params[:id]
     redirect_to root_url unless current_user.admin?
   end
 
-  def find_user
+  def load_user
     @user = User.find_by id: params[:id]
 
     return if @user
