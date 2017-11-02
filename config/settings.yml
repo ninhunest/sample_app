@@ -8,3 +8,4 @@ time_life_link_reset: 2
 max_length_content: 140
 picture_size: 5
 limit_size: 400
+garvatar_for_user: 30
